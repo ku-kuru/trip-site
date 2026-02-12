@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>03/9-10 湯沢スキー旅行のしおり</title>
+
+<style>
+/* ===== ヘブバン風テーマ ===== */
+:root {
+  --main: #ff9fcf;
+  --sub: #ffd1e6;
+  --bg: #fff6fb;
+  --card: rgba(255,255,255,0.88);
+}
+
+/* ===== タイトル（ヒーロー） ===== */
+.hero {
+  padding: 90px 16px 100px;
+  background: linear-gradient(
+    180deg,
+    #ffe4f1 0%,
+    #fff6fb 60%,
+    #ffffff 100%
+  );
+}
+
+.hero-box {
+  text-align: center;
+}
+
+.main-title {
+  font-size: 3rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #ff8fc4, #ffb3d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub-title {
+  font-size: 1.1rem;
+  color: #b85c8f;
+  margin-bottom: 10px;
+}
+
+.mini-title {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: linear-gradient(180deg, var(--bg), #ffffff);
+  color: #333;
+}
+
+section {
+  padding: 60px 16px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--main), var(--sub));
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* ===== フェードイン ===== */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.9s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== メンバー ===== */
+.members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.member {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.member img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.member .text {
+  padding: 15px;
+}
+
+.bubble {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #e8f3ff, #fff);
+  border-radius: 14px;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+/* ===== タイムライン ===== */
+.timeline {
+  border-left: 4px solid var(--main);
+  padding-left: 20px;
+}
+
+.event {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.event::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: var(--main);
+  border-radius: 50%;
+  position: absolute;
+  left: -31px;
+  top: 4px;
+}
+
+.time {
+  font-weight: bold;
+  color: #2b6cb0;
+}
+
+/* ===== 縦レイアウトカード（スキー場・ホテル） ===== */
+.vertical-card {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: 24px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+  max-width: 800px;
+  margin: auto;
+}
+
+.vertical-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.vertical-card .content {
+  padding: 20px;
+}
+
+.vertical-card ul {
+  padding-left: 20px;
+}
+
+/* ===== チェックリスト ===== */
+.checklist li {
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.checklist input {
+  transform: scale(1.3);
+  margin-right: 10px;
+}
+
+/* ===== フッター ===== */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #eef6ff, #ffffff);
+  margin-top: 60px;
+}
+
+/* ===== おっさん会話劇 ===== */
+.ossan-chat {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.ossan {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.ossan img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.talk {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  font-size: 0.9rem;
+}
+
+/* ===== 会話：返信（右寄せ） ===== */
+.ossan.reply {
+  justify-content: flex-end;
+}
+
+.ossan.reply .talk {
+  order: 1;
+  background: linear-gradient(135deg, #ffe3f1, #fff);
+}
+
+.ossan.reply img {
+  order: 2;
+}
+
+/* ===== タイトル直下専用の余白 ===== */
+.hero-gap {
+  margin-top: 40px;
+}
+
+/* ===== 画像スライダー ===== */
+.image-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+}
+
+.image-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.image-slider img {
+  flex: 0 0 100%;
+  height: 260px;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+/* ===== スライダードット ===== */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+
+.slider-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f2b7d6;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+.slider-dots span.active {
+  opacity: 1;
+  background: #ff8fc4;
+  transform: scale(1.2);
+}
+
+/* ===== リンクエモくするよう ===== */
+
+.map-link {
+  margin-top: 10px;
+}
+
+.map-link a {
+  color: #4da3ff;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s;
+}
+
+.map-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: #4da3ff;
+  transition: 0.3s;
+}
+
+.map-link a:hover {
+  color: #7fc2ff;
+}
+
+.map-link a:hover::after {
+  background: #7fc2ff;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<section class="fade hero">
+  <div class="hero-box">
+    <h1 class="main-title">GACHI IKU SNOW TRIP</h1>
+    <p class="sub-title">— びゃおう！ —</p>
+    <p class="mini-title">…ひゃばい、ちょまって…あかん！あかん！やばい、やばい！ｶﾞｯ!やばい！！あかん！！！ｱｯ ちょまって、やばい、まじで、ｸｯ、落ち着け、ｸｯ、ﾊｯ、やばいっ…スキーが…く、くる…！</p>
+  </div>
+</section>
+
+<div class="ossan-chat fade hero-gap">
+
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/profile_images/1587341318711189504/x0qcEtVX_400x400.jpg">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      きちーｗスキー確定しそーｗ</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- メンバー -->
+<section class="fade">
+<h2>メンバー紹介</h2>
+<b>※画像はイメージです</b>
+<div class="members">
+
+<div class="member">
+<img src="https://hololive.hololivepro.com/wp-content/uploads/2020/06/Murasaki-Shion_list_thumb.png">
+<div class="text">
+<strong>し、おん🃏</strong><br> <b>シャドウバース千葉県代表</b>
+<div class="bubble">スキー？シャドバと一緒やろ</div>
+</div>
+</div>
+
+<div class="member">
+<img src="https://img.atwiki.jp/niconicomugen/attach/8395/17710/KBTIT.jpg">
+<div class="text">
+<strong>よ、こ⛓️</strong><br> <b>埼玉のロリ専属調教師</b>
+<div class="bubble">女児のボードとかない？</div>
+</div>
+</div>
+
+<div class="member">
+<img src="https://hyakuemu-anime.com/news/wp-content/themes/hyakuemu/common/images/cast/komiya01.jpg">
+<div class="text">
+<strong>ゆ、うと🍆</strong><br> <b>群馬の汚点</b>
+<div class="bubble">にょっす🐮✋うおwけけっwひひっwどわーwびゃおうwガチイク！🗿🍷んん〜まかｧｧウｯｯ!!!!🤏😎</div>
+</div>
+</div>
+
+<div class="member">
+<img src="https://img-mdpr.freetls.fastly.net/article/PsN-/wm/PsN-yoANI7h5TTqyhYI4NI8jWv_uMf-Qf8AktR_h5kE.jpg?width=700&disable=upscale&auto=webp&quality=80">
+<div class="text">
+<strong>そう</strong><br> <b>英姿颯爽</b>
+<div class="bubble">皆さんとスキーを滑るのが楽しみです！</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/E6lY1SrUYAMa3VZ.jpg">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      あれ？一人いなくね？</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- スケジュール -->
+<section class="fade">
+<h2>タイムスケジュール</h2>
+
+<h3>1日目（03/09）</h3>
+<div class="timeline">
+<div class="event"><div class="time">08:00</div>東京駅集合</div>
+<div class="event"><div class="time">08:30</div>東京駅からガチイク！</div>
+<div class="event">新幹線 たにがわ81号<br>6号車 17D/E・18D/E</div>
+<div class="event"><div class="time">09:44</div>越後湯沢駅 到着</div>
+<div class="event"><div class="time">09:50</div>東口5番乗り場</div>
+<div class="event">無料シャトルバス（オレンジラインコース）<br> ※徒歩12分だから歩いてもイイ！</div>
+<div class="event"><div class="time">09:53</div>湯沢高原スキー場<br> ゲレンデはまだや！</div>
+<div class="event">ゴンドラ 約7分 長すぎて7回出せる</div>
+<div class="event"><div class="time">10:00頃</div>スキータイムびゃおう！</div>
+<div class="event"><div class="time">16:00頃</div>「スキーって何が楽しいの？早く帰ろうぜ」とゆうとが騒ぐので撤退</div>
+<div class="event"><div class="time">17:00頃</div>ホテル双葉 酒池肉林</div>
+</div>
+
+<h3>03/10（2日目）</h3>
+<div class="timeline">
+<div class="event">朝飯 → スキー場ガチイク！</div>
+<div class="event"><div class="time">18:12</div>越後湯沢駅</div>
+<div class="event">新幹線 とき334号 ←なんでや！阪神関係ないやろ！<br>8号車 09D/E・10D/E</div>
+<div class="event"><div class="time">19:36</div>東京駅到着 ゆうとはソープへ</div>
+</div>
+
+</section>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/Gr_hQkBWcAA0m53?format=jpg&name=small">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      予定って意味ないよな。あくまで目安にして臨機応変に行こうぜ</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- スキー場 -->
+<section class="fade">
+<h2>湯沢高原スキー場</h2>
+<div class="vertical-card">
+<img src="https://surfsnow.jp/real_img/r0301/ski_pic_r0301.jpg">
+<div class="content">
+<ul>
+<li>初心者〜中級者向け、景色が最高</li>
+<li><b>リフト・ロープウェイ（日本住み限定の安いやつ）</b><br>
+1日券 5,000円 / 2日券 9,000円<br>
+※国内住所確認できる身分証必須</li>
+<li><b>レンタル（スキー・スノボ共通）</b><br>
+ウェア付：1日 9,300円 / 2日 16,000円<br>
+ウェア無：1日 4,500円 / 2日 9,000円</li>
+<li>手袋・帽子・ゴーグルのレンタルなし（売ってるらしいけど高そう）</li>
+<li>障害者手帳で半額！よかったなゆうと！</li>
+
+<p class="map-link">
+  <a href="https://www.yuzawakogen.com/" target="_blank" rel="noopener">
+    公式サイト
+  </a>
+</p>
+<p class="map-link">
+  <a href="https://www.yuzawakogen.com/winter/gelaende/" target="_blank" rel="noopener">
+    ゲレンデマップ
+  </a>
+</p>
+<p class="map-link">
+  <a href="https://maps.google.com/?q=ガーラ湯沢スキー場" target="_blank" rel="noopener">
+    GoogleMap
+  </a>
+</p>
+
+</ul>
+</div>
+</div>
+</section>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/GrCsN_gaAAE6vlI?format=jpg&name=240x240">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      初心者向けコースが多めらしいぞ！成功体験をたくさん積めそうだな！</p>
+    </div>
+  </div>
+</div>
+
+
+<section class="fade">
+<h2>ホテル双葉</h2>
+
+<div class="vertical-card">
+
+  <!-- スライダー -->
+  <div class="image-slider" id="hotelSlider">
+    <img src="https://www.jalan.net/jalan/images/pict2L/Y0/Y320610/Y320610351.jpg">
+    <img src="https://cdn.r-corona.jp/prd.jln.r-corona.jp/assets/site_files/vs0g3zut/339019/722b_bw630.jpg">
+    <img src="https://cdn.r-corona.jp/prd.jln.r-corona.jp/assets/site_files/vs0g3zut/1183367/o0xt_jw750h375.png">
+    <img src="https://s3-ap-northeast-1.amazonaws.com/l-ey-images/25/2508/596532_20170327150206804.jpg">
+  </div>
+
+  <!-- ドット -->
+  <div class="slider-dots" id="hotelDots"></div>
+
+  <!-- テキスト -->
+  <div class="content">
+    <ul>
+      <li>越後湯沢駅近くの温泉宿</li>
+      <li>露天風呂あり</li>
+      <li>夜は酒池肉林、朝飯もガチ</li>
+<p class="map-link">
+  <a href="https://hotel-futaba.com/" target="_blank" rel="noopener">
+    公式サイト
+  </a>
+</p>
+<p class="map-link">
+  <a href="https://maps.google.com/?q=ホテル双葉 越後湯沢" target="_blank" rel="noopener">
+    GoogleMap
+  </a>
+</p>
+<p class="map-link">
+  <a href="https://pbs.twimg.com/media/FzNBwN-aMAAU7q9.jpg" target="_blank" rel="noopener">
+    新潟で一番うまいと言われている飯
+  </a>
+</p>
+
+    </ul>
+  </div>
+
+</div>
+
+</section>
+
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/Gpxl2qZaYAMOnHO?format=jpg&name=medium">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      温泉は気持ちいいし飯はうめぇし最高だなぁ！</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- 持ち物 -->
+<section class="fade">
+<h2>持ち物チェック</h2>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/GfgtmtnbUAAM-na?format=jpg&name=900x900">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      忘れ物すんなよ？</p>
+    </div>
+  </div>
+</div>
+
+
+<ul class="checklist">
+<li><label><input type="checkbox"> 手袋</label></li>
+<li><label><input type="checkbox"> 帽子（いらないかも）</label></li>
+<li><label><input type="checkbox"> ゴーグル（いらないかも）</label></li>
+<li><label><input type="checkbox"> 国内住所が確認できる身分証</label></li>
+</ul>
+</section>
+
+<section class="fade">
+<h2>最後に</h2>
+
+<div class="ossan-chat">
+
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/G3tY7n-WUAA3ht2?format=jpg&name=large">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      それでは最後に謎掛けを（強引）<br> 「スノボ」とかけまして、「スマブラをやるゆうと」と説きます</p>
+    </div>
+  </div>
+
+  <div class="ossan reply">
+    <img src="https://pbs.twimg.com/media/Gfrqe5IakAA01Gp?format=jpg&name=medium">
+    <div class="talk">
+      <p><b>松本匡生２</b><br>
+      その心は？</p>
+    </div>
+  </div>
+
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/G3tY7n-WUAA3ht2?format=jpg&name=large">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      どちらも、「ストックがない」です</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<footer>
+滑るのはスキーだけにしとけよ ⛷️
+</footer>
+
+<script>
+const slider = document.getElementById("hotelSlider");
+const dotsBox = document.getElementById("hotelDots");
+const images = slider.querySelectorAll("img");
+
+images.forEach((_, i) => {
+  const dot = document.createElement("span");
+  if (i === 0) dot.classList.add("active");
+  dotsBox.appendChild(dot);
+});
+
+const dots = dotsBox.querySelectorAll("span");
+
+slider.addEventListener("scroll", () => {
+  const index = Math.round(slider.scrollLeft / slider.clientWidth);
+  dots.forEach(d => d.classList.remove("active"));
+  if (dots[index]) dots[index].classList.add("active");
+});
+</script>
+
+
+</body>
+</html>

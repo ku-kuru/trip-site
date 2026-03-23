@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ガチイク！🗿🍷</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤡</text></svg>">
+
+<style>
+/* ===== ヘブ風テーマ ===== */
+:root {
+  --main: #ff9fcf;
+  --sub: #ffd1e6;
+  --bg: #fff6fb;
+  --card: rgba(255,255,255,0.88);
+}
+
+/* ===== タイトル（ヒーロー） ===== */
+.hero {
+  padding: 90px 16px 100px;
+  background: linear-gradient(
+    180deg,
+    #ffe4f1 0%,
+    #fff6fb 60%,
+    #ffffff 100%
+  );
+}
+
+.hero-box {
+  text-align: center;
+}
+
+.main-title {
+  font-size: 3rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #ff8fc4, #ffb3d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub-title {
+  font-size: 1.1rem;
+  color: #b85c8f;
+  margin-bottom: 10px;
+}
+
+.mini-title {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: linear-gradient(180deg, var(--bg), #ffffff);
+  color: #333;
+}
+
+section {
+  padding: 60px 16px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--main), var(--sub));
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* ===== フェードイン ===== */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.9s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== メンバー ===== */
+.members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.member {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.member img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.member .text {
+  padding: 15px;
+}
+
+.bubble {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #e8f3ff, #fff);
+  border-radius: 14px;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+/* ===== タイムライン ===== */
+.timeline {
+  border-left: 4px solid var(--main);
+  padding-left: 20px;
+}
+
+.event {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.event::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: var(--main);
+  border-radius: 50%;
+  position: absolute;
+  left: -31px;
+  top: 4px;
+}
+
+.time {
+  font-weight: bold;
+  color: #2b6cb0;
+}
+
+/* ===== 縦レイアウトカード（スキー場・ホテル） ===== */
+.vertical-card {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: 24px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+  max-width: 800px;
+  margin: auto;
+}
+
+.vertical-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.vertical-card .content {
+  padding: 20px;
+}
+
+.vertical-card ul {
+  padding-left: 20px;
+}
+
+/* ===== チェックリスト ===== */
+.checklist li {
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.checklist input {
+  transform: scale(1.3);
+  margin-right: 10px;
+}
+
+/* ===== フッター ===== */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #eef6ff, #ffffff);
+  margin-top: 60px;
+}
+
+/* ===== おっさん会話劇 ===== */
+.ossan-chat {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.ossan {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.ossan img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.talk {
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  font-size: 0.9rem;
+}
+
+/* ===== 会話：返信（右寄せ） ===== */
+.ossan.reply {
+  justify-content: flex-end;
+}
+
+.ossan.reply .talk {
+  order: 1;
+  background: linear-gradient(135deg, #ffe3f1, #fff);
+}
+
+.ossan.reply img {
+  order: 2;
+}
+
+/* ===== タイトル直下専用の余白 ===== */
+.hero-gap {
+  margin-top: 40px;
+}
+
+/* ===== 画像スライダー ===== */
+.image-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+}
+
+.image-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.image-slider img {
+  flex: 0 0 100%;
+  height: 260px;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+/* ===== スライダードット ===== */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+
+.slider-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f2b7d6;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+.slider-dots span.active {
+  opacity: 1;
+  background: #ff8fc4;
+  transform: scale(1.2);
+}
+
+/* ===== リンクエモくするよう ===== */
+
+.map-link {
+  margin-top: 10px;
+}
+
+.map-link a {
+  color: #4da3ff;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s;
+}
+
+.map-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: #4da3ff;
+  transition: 0.3s;
+}
+
+.map-link a:hover {
+  color: #7fc2ff;
+}
+
+.map-link a:hover::after {
+  background: #7fc2ff;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<section class="fade hero">
+  <div class="hero-box">
+    <h1 class="main-title">GACHI IKU OITA TRIP</h1>
+    <p class="sub-title">～ ひなたはホモ ～</p>
+    <p class="mini-title">旅行責任者 : えんじょうじ</p>
+  </div>
+</section>
+
+<div class="ossan-chat fade hero-gap">
+
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/profile_images/1587341318711189504/x0qcEtVX_400x400.jpg">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      やべーなんか大分確定しそーw</p>
+    </div>
+  </div>
+
+  <div class="ossan reply">
+    <img src="https://pbs.twimg.com/media/Gfrqe5IakAA01Gp?format=jpg&name=medium">
+    <div class="talk">
+      <p><b>松本匡生２</b><br>
+      きちーｗ</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- メンバー -->
+<section class="fade">
+<h2>メ、ンバー紹介</h2>
+<b>※画像はイメージです</b>
+<div class="members">
+
+<div class="member">
+<img src="https://yt3.googleusercontent.com/L2XlUqdQkejNXKNzytD5VnALWOLG3yffRCeJAEVgIwTrMOiXpuRPeyrJuX2cGiKQe8hs2NLhkA=s900-c-k-c0x00ffffff-no-rj">
+<div class="text">
+<strong>しゅ、うと</strong><br>
+<div class="bubble">元外科医。手術が大成功して肝臓が余った経験がある。</div>
+</div>
+</div>
+
+<div class="member">
+<img src="https://www.ndw.jp/ndw/wordpress/wp-content/uploads/2022/08/sakurai220824.jpg">
+<div class="text">
+<strong>そ、ら</strong><br>
+<div class="bubble">2さい（ギフテッド）。最近九九を覚えた。</div>
+</div>
+</div>
+
+<div class="member">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Uno_-_2018_Olympics.jpg">
+<div class="text">
+<strong>ひ、なた</strong><br>
+<div class="bubble">自認が月。昨晩は地球で抜いた。</div>
+</div>
+</div>
+
+<div class="member">
+<img src="https://www.asahiinryo.co.jp/sou/sp/img/product/img_bottle.webp">
+<div class="text">
+<strong>そ、う</strong>
+<div class="bubble">さとう。</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://www.pokemon.co.jp/ex/sun_moon/common/images/pokemon/160826_03/portrait01.png">
+    <div class="talk">
+      <p><b>えんじょうじ</b><br>
+      僕も行くよ～</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- スケジュール -->
+<section class="fade">
+<h2>タ、イムスケジュール</h2>
+
+<h3>1日目（03/24）</h3>
+<div class="timeline">
+<div class="event"><div class="time">11:37</div>稲城長沼駅からガチイク！</div>
+<div class="event"><div class="time">12:46</div>羽田空港の第2ターミナルで待つ（</div>
+<div class="event"><div class="time">14:30</div>飛行機とヒナタスペルマ発射！</div>
+<div class="event">ソラシドエア(6j-95)</div>
+<div class="event"><div class="time">16:10</div>大分空港着床！妊娠確定しそーｗ</div>
+</div>
+
+<h3>2日目（03/25）</h3>
+<div class="timeline">
+<div class="event"><div class="time">4:00</div>防音室で騒ぐソラの声で起床（シュウトは着床）</div>
+<div class="event"><div class="time">07:00～就寝</div>みんなで布団ちゃんの切り抜きを見る</div>
+</div>
+
+<h3>3日目（03/26）</h3>
+<div class="timeline">
+<div class="event"><div class="time">遅くても07:00には</div>別府から全軍撤退🐮💦</div>
+<div class="event"><div class="time">08:35</div>大分空港から出す、全部出す！</div>
+<div class="event"><div class="time">10:05</div>羽田空港に孕めオラァ！！</div>
+<div class="event"><div class="time">11:30</div>稲城駅到着　シュウトはソープへ</div>
+</div>
+</section>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/Gr_hQkBWcAA0m53?format=jpg&name=small">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      予定って意味ないよな。あくまで目安にして臨機応変に行こうぜ</p>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="fade">
+<h2>グランドベース別府</h2>
+
+<div class="vertical-card">
+
+  <!-- スライダー -->
+  <div class="image-slider" id="hotelSlider">
+    <img src="https://trvimg.r10s.jp/share/HOTEL/177566/177566.jpg">
+    <img src="https://grand-base.jp/grandbase/wp-content/uploads/2020/09/gbbeppu_102-1-scaled.jpg">
+    <img src="https://grand-base.jp/grandbase/wp-content/uploads/2020/09/P1288113_2-2.jpg">
+    <img src="https://pbs.twimg.com/media/E6lY1SrUYAMa3VZ.jpg">
+  </div>
+
+  <!-- ドット -->
+  <div class="slider-dots" id="hotelDots"></div>
+
+  <!-- テキスト -->
+  <div class="content">
+    <ul>
+      <li>別府駅の近くで動きやすい！</li>
+      <li>家ごと借りる感じだから自由！</li>
+      <li>ダブルベットでヒナタとシュウト大喜び！</li>
+<p class="map-link">
+  <a href="https://grand-base.jp/hotel/gb-beppu/" target="_blank" rel="noopener">
+    公式サイト
+  </a>
+</p>
+<p class="map-link">
+  <a href="https://maps.app.goo.gl/YJDSQps3Maonqp7E8" target="_blank" rel="noopener">
+    GoogleMap
+  </a>
+</p>
+<p class="map-link">
+  <a href="https://pbs.twimg.com/media/FzNBwN-aMAAU7q9.jpg" target="_blank" rel="noopener">
+    大分で一番うまいと言われている飯
+  </a>
+</p>
+
+    </ul>
+  </div>
+
+</div>
+
+</section>
+
+<!-- 持ち物 -->
+<section class="fade">
+<h2>持ち物チェック</h2>
+
+<div class="ossan-chat fade">
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/GfgtmtnbUAAM-na?format=jpg&name=900x900">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      忘れ物すんなよ？</p>
+    </div>
+  </div>
+</div>
+
+
+<ul class="checklist">
+<li><label><input type="checkbox"> 女</label></li>
+<li><label><input type="checkbox"> 財布</label></li>
+<li><label><input type="checkbox"> 着替え</label></li>
+<li><label><input type="checkbox"> 傘</label></li>
+<li><label><input type="checkbox"> オナホ</label></li>
+<li><label><input type="checkbox"> 脱童貞の裏技</label></li>
+<li><label><input type="checkbox"> おすすめの同人誌</label></li>
+</ul>
+</section>
+
+<section class="fade">
+<h2>まとめ</h2>
+
+<div class="ossan-chat">
+
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/G3tY7n-WUAA3ht2?format=jpg&name=large">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      それでは最後に謎掛けを（強引）<br> 「別府」とかけまして、「ヒナタのスペルマ」と説きます</p>
+    </div>
+  </div>
+
+  <div class="ossan reply">
+    <img src="https://pbs.twimg.com/media/Gfrqe5IakAA01Gp?format=jpg&name=medium">
+    <div class="talk">
+      <p><b>松本匡生２</b><br>
+      その心は？</p>
+    </div>
+  </div>
+
+  <div class="ossan">
+    <img src="https://pbs.twimg.com/media/G3tY7n-WUAA3ht2?format=jpg&name=large">
+    <div class="talk">
+      <p><b>松本匡生</b><br>
+      どちらも、「あつい」です</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<footer>
+どわーｗ
+</footer>
+
+<script>
+const slider = document.getElementById("hotelSlider");
+const dotsBox = document.getElementById("hotelDots");
+const images = slider.querySelectorAll("img");
+
+images.forEach((_, i) => {
+  const dot = document.createElement("span");
+  if (i === 0) dot.classList.add("active");
+  dotsBox.appendChild(dot);
+});
+
+const dots = dotsBox.querySelectorAll("span");
+
+slider.addEventListener("scroll", () => {
+  const index = Math.round(slider.scrollLeft / slider.clientWidth);
+  dots.forEach(d => d.classList.remove("active"));
+  if (dots[index]) dots[index].classList.add("active");
+});
+</script>
+
+
+</body>
+</html>
+
+
